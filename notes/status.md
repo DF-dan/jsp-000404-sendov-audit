@@ -22,7 +22,7 @@ k(i) = sum_j max(floor(t * phi(i,j)) - 1, 0),
 
 where the `phi(i,j)` are cyclic gaps between unoriented centre lines and sum to one at each centre. Lemma 4.12 states the final sharp capacity bounds but, from the four-centre case onward, asserts maximizing exponent profiles without deriving the induction step.
 
-At `t=15/4`, admissible four-centre profiles of total weight `10` occur, while the profile asserted in the paper has weight `9`. This refutes that intermediate maximizer claim, but `10` is exactly the final bound `2^3 + 2^1`; it does not refute the classification itself.
+At `t=15/4`, admissible four-centre profiles of total weight `10` occur, while the profile asserted in the paper has weight `9`. A fully rational check is now in [`scripts/verify_four_center_profile.py`](../scripts/verify_four_center_profile.py): the integer centres `(7,-7), (6,-6), (11,15), (-16,-13)` have exponent profile `(2,2,0,0)`, weight `10`, and every centre angle is below `11π/15`. The script verifies angle and floor comparisons using rational arithmetic, Machin's identity and bounded arctangent/cosine Taylor series. This refutes that intermediate maximizer claim, but `10` is exactly the final bound `2^3 + 2^1`; it does not refute the classification itself.
 
 ## Exact model artifacts
 
@@ -53,5 +53,5 @@ An attempted general recurrence by two-coloring edges with direction value below
 
 Two independent bounded searches checked `Model 17 (449/100)`: cvc5 returned `unknown (TIMEOUT)` after 45 seconds, and a HiGHS mixed-integer formulation hit its 45-second limit without a primal witness. Neither result proves unsatisfiability. The exact public `Model 17 (9/2)` witness and its local branch certificate remain valid.
 
-The separate English paper *Minimax of the angles in a plane configuration of points* (Acta Mathematica Hungarica 69, 27–46, 1995, DOI `10.1007/BF01874605`) was located; its full text requires journal access. No alternative proof of the missing all-parameter bound has been obtained from it.
+The separate English paper *Minimax of the angles in a plane configuration of points* (Acta Mathematica Hungarica 69, 27–46, 1995, DOI `10.1007/BF01874605`) is openly available in the [journal-volume scan](https://real-j.mtak.hu/7467/1/ActaMathHung_69.pdf). Printed pages 37–40 (PDF pages 39–42) repeat the same all-parameter capacity proof: Lemma 4.1 states the four-center maximizing exponent profile and then asserts analogous profiles for the induction on the number of centers, without deriving those maximizing claims. The four-center claim is contradicted by the admissible weight-10 profiles already noted above, versus its stated weight-9 profile at `t=15/4`. The final numerical bound remains 10 in that case; this is a gap in the presented argument, not a counterexample to the theorem. No alternative complete proof of the missing all-parameter bound was obtained from the English version.
 
