@@ -47,3 +47,11 @@ This local certificate does not cover the other orientation branches. A fresh `N
 
 No prize PR should cite this repository as a completed solution. It becomes submission-ready only after the two parameterized capacity bounds are proved in Lean, connected to the exact `SendovAnswer` statement, and passed through the prize repository's `lean-verify` workflow.
 
+## Additional audit (2026-09-27)
+
+An attempted general recurrence by two-coloring edges with direction value below `1` fails. Within each color class those edge values are at least `1`, but subtracting `1` from every direction does **not** preserve `Triangle` with parameter reduced from `t` to `t-1`: the upper-gap requirement also tightens by `1`. For example, at `t=249/100`, the forward triple `(a,b,c)=(1,17/10,12/5)` satisfies `Triangle t a b c`; after subtracting `1`, the gap `b-a=7/10` exceeds `(t-1)-1=49/100`. Thus the known three- and six-label base cases cannot be propagated by this shortcut.
+
+Two independent bounded searches checked `Model 17 (449/100)`: cvc5 returned `unknown (TIMEOUT)` after 45 seconds, and a HiGHS mixed-integer formulation hit its 45-second limit without a primal witness. Neither result proves unsatisfiability. The exact public `Model 17 (9/2)` witness and its local branch certificate remain valid.
+
+The separate English paper *Minimax of the angles in a plane configuration of points* (Acta Mathematica Hungarica 69, 27–46, 1995, DOI `10.1007/BF01874605`) was located; its full text requires journal access. No alternative proof of the missing all-parameter bound has been obtained from it.
+

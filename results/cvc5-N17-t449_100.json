@@ -1,0 +1,11 @@
+{
+  "n": 17,
+  "t": "449/100",
+  "solver": "cvc5 1.4.0",
+  "logic": "QF_LRA",
+  "edge_variables": 136,
+  "triangle_disjunctions": 680,
+  "timeout_ms": 45000,
+  "elapsed_seconds": 45.01499999999942,
+  "result": "unknown (TIMEOUT)"
+}
