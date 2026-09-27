@@ -37,6 +37,12 @@ At `t=15/4`, admissible four-centre profiles of total weight `10` occur, while t
 
 These witnesses confirm that the threshold values themselves are feasible in the necessary model. A complete proof must exclude every model strictly below the relevant threshold, uniformly in the integer parameter.
 
+## New branch certificate (2026-09-27)
+
+The exact `N=17,t=9/2` witness has an orientation branch whose linear relaxation has minimum parameter exactly `9/2`. `scripts/branch_optimize.py` identifies ten active triangle constraints; the sum of their inequalities telescopes to `0 ≤ 2t-9`. `lean/Branch17Certificate.lean` checks this argument in Lean from the branch's ten order choices and the original triangle predicate. Its axiom printout contains only Lean's standard `propext`, `Classical.choice`, and `Quot.sound`.
+
+This local certificate does not cover the other orientation branches. A fresh `N=17,t=449/100` query with a 180-second limit returned `unknown` (timeout), so it supplies neither a proof nor a counterexample for the full model bound.
+
 ## Submission status
 
 No prize PR should cite this repository as a completed solution. It becomes submission-ready only after the two parameterized capacity bounds are proved in Lean, connected to the exact `SendovAnswer` statement, and passed through the prize repository's `lean-verify` workflow.

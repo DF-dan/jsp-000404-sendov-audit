@@ -9,6 +9,7 @@ This repository records a reproducible audit of the missing general lower-bound 
 - An exact QF_LRA transcription of the necessary direction model introduced in [TheJustinSunPrize/awards PR #100](https://github.com/TheJustinSunPrize/awards/pull/100).
 - A rational SAT witness for the first unresolved boundary instance `Model 17 (9/2)`, checked against all 136 range constraints and 680 triangle disjunctions, then rechecked with the serialized values fixed.
 - A transparent first-differing-bit construction for `Model 21 5`, checked against all 210 edges and 1,330 triples.
+- A Lean-checked, ten-triangle certificate showing that one exact `N=17` orientation branch forces `t ≥ 9/2`. See [lean/Branch17Certificate.lean](lean/Branch17Certificate.lean). This is one branch, not the universal bound.
 - A corrected implementation of the weight exponent in Sendov's 1995 Lemma 4.10: with `t = u/2`,
 
   ```text
@@ -21,7 +22,7 @@ The SAT witnesses are boundary sanity checks. They do not establish the missing 
 
 ## Reproduce
 
-Requires Python 3.11+ and Z3:
+Requires Python 3.11 or 3.12 and the pinned dependencies below:
 
 ```bash
 python -m pip install -r requirements.txt
@@ -36,9 +37,14 @@ python scripts/explicit_dyadic_model.py \
 
 # Run a fresh exact model query (potentially expensive).
 python scripts/model_audit.py --n 11 --t 399/100 --timeout-ms 120000
+
+# Optimize the parameter on the fixed N=17 orientation branch.
+python scripts/branch_optimize.py results/model-N17-t9_2.json
 ```
 
 Expected results for the first two commands are `unsat` for the fixed `N=17` orientation at `449/100`, and `sat` for the explicit `N=21,t=5` construction.
+
+The Lean certificate was checked with Lean `v4.35.0-rc2` against mathlib commit `7ef65c0feea1fb202b501b758e8920144cc0c3a2`. From a checkout of that mathlib commit, run `lake env lean /absolute/path/to/lean/Branch17Certificate.lean`.
 
 ## The remaining theorem
 
